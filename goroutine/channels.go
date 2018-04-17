@@ -27,8 +27,8 @@ func main() {
 	// ch := make(chan type, value)
 	// 当 value = 0 时，channel 是无缓冲阻塞读写的，
 	// 当value > 0 时，channel 有缓冲、是非阻塞的，直到写满 value 个元素才阻塞写入
-	ch := make(chan int, 1)
-	ch <- 1 // 发送
+	ch := make(chan int, 2) // 此处将缓存区大小改成1则会报错
+	ch <- 1                 // 发送
 	ch <- 2
 	fmt.Println(<-ch) // 接收
 	fmt.Println(<-ch)
