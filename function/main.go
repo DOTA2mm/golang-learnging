@@ -23,4 +23,11 @@ func main() {
 		result = fibonacci(i)
 		fmt.Printf("fibonacci(%d) is: %d\n", i, result)
 	}
+
+	// test factory function
+	addBmp := MakeAddSuffix(".bmp")
+	addJpeg := MakeAddSuffix(".jpeg")
+
+	fmt.Printf("file addBmp: %s\n", addBmp("file"))
+	fmt.Printf("file addJpeg: %s\n", addJpeg("file"))
 }
