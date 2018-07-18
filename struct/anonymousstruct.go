@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"golang-learning/struct/struct_pack"
 )
 
 type Skills []string
@@ -36,4 +37,11 @@ func main() {
 	// 修改匿名内置类型字段
 	jane.int = 3
 	fmt.Println("Her preferred number is", jane.int)
+
+	// 引用外部包
+	struct1 := new(structPack.ExpStruct)
+	struct1.Mi1 = 10
+	struct1.Mf1 = 16.
+	fmt.Printf("Mi1 = %d\n", struct1.Mi1)
+	fmt.Printf("Mf1 = %f\n", struct1.Mf1)
 }
