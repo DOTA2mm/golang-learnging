@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 type Shaper interface {
@@ -36,15 +35,17 @@ type Circle struct {
 	Shape
 }
 
-func (c Circle) Area() float32 {
-	return math.Pi * c.radius * c.radius
-}
+// Circle 可以因为内嵌了 Shape 这一实现了 Shaper 接口的类型而不用再自己实现 Area 方法
+
+// func (c Circle) Area() float32 {
+// 	return math.Pi * c.radius * c.radius
+// }
 
 func init() {
 	fmt.Println("===== interfaces_poly.go ======")
 	s := Shape{}
-	r := Rectangle{5, 3} // Area() of Rectangle needs a value
-	q := &Square{5}      // Area() of Square needs a pointer
+	r := &Rectangle{5, 3} // Area() of Rectangle needs a value
+	q := &Square{5}       // Area() of Square needs a pointer
 	c := &Circle{2.5, s}
 	// shapes := []Shaper{Shaper(r), Shaper(q)}
 	// or shorter
