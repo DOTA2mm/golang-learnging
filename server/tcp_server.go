@@ -13,7 +13,7 @@ func doServerStuff(conn net.Conn) {
 			fmt.Println("Error reading", err.Error())
 			return
 		}
-		fmt.Printf("Receive data : %v", string(buf[:len]))
+		fmt.Printf("Receive data : %v\n", string(buf[:len]))
 	}
 }
 
