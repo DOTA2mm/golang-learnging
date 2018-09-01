@@ -22,7 +22,8 @@ func main() {
 	}
 	serverAddress := os.Args[1]
 
-	client, err := rpc.DialHTTP("tcp", serverAddress)
+	// 此处不同与 http RCP 客户端的 rpc.DialHTTP
+	client, err := rpc.Dial("tcp", serverAddress)
 	if err != nil {
 		log.Fatal("dialing: ", err)
 	}
