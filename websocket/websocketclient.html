@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WebSocket</title>
+  <style>
+    html, body {
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    #msg {
+      width: 500px;
+      height: 300px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      position: relative;
+      top: 50%;
+      margin: 0 auto;
+      transform: translateY(-50%);
+    }
+  </style>
+</head>
+<body>
+  <div id="msg">
+      <h4>WebSocket Test</h4>
+      <form>
+        <p>
+          Message: <input type="text" name="message" id="message" value="Hello, Golang!">
+        </p>
+        <p>
+          Received: <span id="received"></span>
+        </p>
+        <input type="button" value="Submit" onclick="send()">
+      </form>
+
+  </div>
+</body>
+<script>
+  var socket = null;
+  var wsuri = 'ws://127.0.0.1:2333';
+  window.onload = function () {
+    socket = new WebSocket(wsuri);
+    socket.onopen = function () {
+      console.log('connected to ' + wsuri);
+    }
+    socket.onclose = function (e) {
+      console.log('connection closed (' + e.code + ')');
+    }
+    socket.onmessage = function (e) {
+      document.getElementById('received').innerText = e.data;
+      console.log('message received: ' + e.data);
+    }
+  }
+
+  function send () {
+    var msg = document.getElementById('message').value;
+    socket.send(msg);
+  }
+</script>
+</html>
